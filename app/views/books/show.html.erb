@@ -1,0 +1,21 @@
+<%= render 'list', user:@user, book:@book %>
+
+<h2>Book detail</h2>
+<table class="book_show">
+  <tr>
+    <td>
+      <%= image_tag @user.get_profile_image(75,75) %><br>
+      <%= @user.name %>
+    </td>
+    <td><%= @book1.title %></td>
+    <td><%= @book1.body %></td>
+    <% if @user == current_user %>
+      <td>
+        <%= link_to "Edit", edit_book_path(@book1), class: 'btn btn-default' %>
+      </td>
+      <td>
+        <%= link_to "Destroy", destroy_book_path(@book1), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+      </td>
+    <% end %>
+  </tr>
+</table>
