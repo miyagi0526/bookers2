@@ -1,31 +1,37 @@
-<%= render 'list', user:@user, book:@book %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render 'list', user:@user, book:@book %>
+    </div>
 
-<h2>Books</h2>
-<table class = "books_table">
-  <thead>
-    <tr>
-      <th class ="header1"></th>
-      <th class ="header2">Title</th>
-      <th class ="header3">Opinion</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @books.each do |books| %>
-      <tr>
-        <td>
-          <%= link_to user_path(books.user.id) do %>
-            <%= image_tag books.user.get_profile_image(75,75) %>
+    <div class="col-md-8 offset-md-1">
+      <h2>Books</h2>
+      <table class = "books_table table-hover">
+        <thead>
+          <tr>
+            <th class ="header1"></th>
+            <th class ="header2">Title</th>
+            <th class ="header3">Opinion</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @books.each do |books| %>
+            <tr>
+              <td>
+                <%= link_to user_path(books.user.id) do %>
+                  <%= image_tag books.user.get_profile_image(75,75) %>
+                <% end %>
+              </td>
+              <td>
+                <%= link_to book_path(books.id) do %>
+                  <%= books.title %>
+                <% end %>
+              </td>
+              <td><%= books.body %></td>
+            </tr>
           <% end %>
-        </td>
-        <td>
-          <%= link_to book_path(books.id) do %>
-            <%= books.title %>
-          <% end %>
-        </td>
-        <td><%= books.body %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
